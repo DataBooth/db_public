@@ -4,7 +4,9 @@ Welcome! :)
 
 _Coming soon_ - this is the placeholder location for sharing of public materials by [DataBooth](https://www.databooth.com.au).
 
-We are almost exclusively a Python and SQL shop. Some of the open source components that we are using or experimenting with currently: 
+We are almost exclusively a Python and SQL shop. 
+
+A small selection of some of the open source components that we are using or experimenting with currently: 
 
 - [`DuckDB`](https://duckdb.org) a fast in-process analytical database
 - [`sqlglot`](https://sqlglot.com) a no-dependency SQL parser, transpiler, optimiser, and engine
@@ -13,3 +15,5 @@ We are almost exclusively a Python and SQL shop. Some of the open source compone
 - [`Prefect`](https://www.prefect.io) is an orchestration tool for building, observing, and reacting to your workflows.
 
 among many others.
+
+Of course we are experimenting with language models both large (LLM) and small!
