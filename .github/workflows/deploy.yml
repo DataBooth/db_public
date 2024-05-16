@@ -17,12 +17,12 @@ jobs:
       with:
         node-version: '14'  # Specify the Node.js version you need
 
-    - name: Render HTML (if needed)
-      run: |
-        # Add commands to render your HTML files here
-        # For example, if you're using a static site generator:
-        npm install
-        npm run build
+    # - name: Render HTML (if needed)
+    #   run: |
+    #     # Add commands to render your HTML files here
+    #     # For example, if you're using a static site generator:
+    #     npm install
+    #     npm run build
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
