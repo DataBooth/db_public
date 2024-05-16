@@ -2,7 +2,7 @@
 
 Welcome! :)
 
-_Coming soon_ - this is the placeholder location for sharing of public materials by [DataBooth](https://www.databooth.com.au).
+This is the placeholder location for sharing of public materials by [DataBooth](https://www.databooth.com.au).
 
 We are almost exclusively a Python and SQL shop. 
 
