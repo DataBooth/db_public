@@ -1,7 +1,7 @@
 [project]
 name = "db_public"
 version = "0.1.0"
-description = "DataBooth Public repo"
+description = "Default template for PDM package"
 authors = [
     {name = "Michael Booth", email = "michael@databooth.com.au"},
 ]
@@ -14,10 +14,11 @@ dependencies = [
     "streamlit>=1.34.0",
     "watchdog>=4.0.0",
     "shiny>=0.6.0",
+    "devtools>=0.12.2",
 ]
-requires-python = ">=3.11"
+requires-python = "==3.11.*"
 readme = "README.md"
-license = {text = "DataBooth"}
+license = {text = "MIT"}
 
 
 [tool.pdm]
@@ -27,3 +28,4 @@ distribution = false
 lint = [
     "black[jupyter]>=24.4.2",
 ]
+python-devtools = []

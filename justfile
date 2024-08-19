@@ -66,6 +66,23 @@ get-macbook-serial-number:
     ioreg -l | awk '/IOPlatformSerialNumber/ { print $4;}'
     echo
 
+# Create a zip archive as a backup of all dotfiles in home directory
+backup-dotfiles:
+    #!/bin/bash
+
+    # Define the backup directory and the backup file name
+    backup_dir="$HOME/icloud/backup"
+    backup_file="dotfiles_backup_$(date +%Y%m%d_%H%M%S).zip"
+
+    # Create the backup directory if it doesnt exist
+    mkdir -p "$backup_dir"
+
+    # Find all dot files in the home directory and zip them
+    find $HOME -maxdepth 1 -name ".*" -type f -not -name ".DS_Store" | zip "$backup_dir/$backup_file" -@ -x "*.DS_Store"
+
+    # Echo the location of the backup file
+    echo "Backup created at $backup_dir/$backup_file"
+
 
 # Recipe for creating a (minimal) set of backup info
 backup-info: get-macbook-serial-number macos-installs brew-list local-code-repo-list vscode-extensions
