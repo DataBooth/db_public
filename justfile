@@ -62,9 +62,14 @@ vscode-extensions:
     echo
 
 # Get the serial number of the MacBook
-get-macbook-serial-number:
-    ioreg -l | awk '/IOPlatformSerialNumber/ { print $4;}'
+get-macbook-serial-number2:
+    system_profiler SPHardwareDataType | awk '/Serial Number/{print $4}'
     echo
+
+# Get the serial number of the MacBook
+# get-macbook-serial-number:
+#     ioreg -c IOPlatformExpertDevice -d 2 | awk -F\" '/IOPlatformSerialNumber/{print $(NF-1)}'
+#     echo
 
 # Create a zip archive as a backup of all dotfiles in home directory
 backup-dotfiles:
@@ -85,8 +90,27 @@ backup-dotfiles:
 
 
 # Recipe for creating a (minimal) set of backup info
-backup-info: get-macbook-serial-number macos-installs brew-list local-code-repo-list vscode-extensions
+backup-info: get-macbook-serial-number2 macos-installs brew-list local-code-repo-list vscode-extensions list-hidden
 
 # Output the backup info to iCloud drive
 output-backup-info backup_info_file="backup-info.txt": 
-    just backup-info > /Users/mjboothaus/icloud/backup/{{backup_info_file}}
+    #!/usr/bin/env bash
+    set -euo pipefail
+    output_file="/Users/mjboothaus/icloud/backup/{{backup_info_file}}"
+    echo "Generating backup info..."
+    just backup-info > "$output_file"
+    echo "Backup info written to $output_file"
+
+
+# List hidden directories and their contents, sorted alphabetically (see also backup-dotfiles)
+list-hidden:
+    #!/usr/bin/env bash
+    echo "Generating list of hidden (dot) directories..."
+    echo
+    for dir in $(ls -d ~/.* | sort | grep -v '\.Trash$'); do
+        if [ -d "$dir" ]; then
+            echo "$dir:"
+            ls -lta "$dir" | sort -k9
+            echo
+        fi
+    done
